@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="space">
+  <div class="heading">
+    <h3>Most recent Tweets by {{screen_name}}:</h3>
+  </div>
+<ul>
+  {%for i in tweets%}
+    <div class="tweetlist">
+      <div class="date">
+        {{i.created_at}}
+      </div>
+      <div class="tweet">
+        {{i.text}}
+      </div>
+      <div class="outtweet">
+        <a href="https://twitter.com/{{var}}/status/{{i.id}}" class="btn btn-link btn-sm" role="button" aria-pressed="true">View Tweet 🔄</a>
+      </div>
+    </div>
+  {%endfor%}
+</ul>
+</div>
+
+{% endblock %}

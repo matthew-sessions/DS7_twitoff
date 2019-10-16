@@ -1,0 +1,26 @@
+.space{
+  margin-top: 5%;
+}
+.tweetlist{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 4px;
+  background-color: #f8f9fa;
+  display:inline-block;
+  vertical-align: top;
+}
+.tweet{
+  width: 250px;
+}
+.date{
+  background-color: grey;
+  text-align: center;
+  color: white;
+}
+.heading{
+  text-align: center;
+}
+.outtweet{
+  padding: 6px;
+  text-align: right;
+}

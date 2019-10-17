@@ -1,11 +1,33 @@
 
 {% extends "base.html" %}
 {% block content %}
-    <h1>Twitoff App</h1>
-    <p>Placeholder for content</p>
-    <ul>
-      {%for user in users%}
-      <li>{{user.name}}</li>
-      {%endfor%}
-    </ul>
+<div class="space">
+  <div class="home_split">
+    <div class="home_left">
+      <h1>Twitoff App</h1>
+      <p>Placeholder for content</p>
+    </div>
+    <div class="home_right">
+      <h3>Recently added users:</h3>
+      <ul>
+        {%for user in users%}
+        <div class="users"><h6>@{{user.name}} - </h6><p>{{user.full_name}}</p></div>
+        <div class="usersfeat">
+          <div class="usercol">
+            <a href="/drop/{{user.name}}">Drop User ❌</a>
+          </div>
+          <div class="usercol">
+            <a href="/euser/{{user.name}}">View Tweets 👀</a>
+          </div>
+        </div>
+        {%endfor%}
+      </ul>
+      <form action="{{url_for('adduser')}}">
+        <input type="text" name="name" placeholder="Enter a username">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add User</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

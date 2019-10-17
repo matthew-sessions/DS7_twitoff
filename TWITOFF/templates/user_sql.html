@@ -2,14 +2,13 @@
 {% block content %}
 <div class="space">
   <div class="heading">
-    <h3>Most recent Tweets by {{screen_name}}:</h3>
-    <a href="/populate/{{data}}"> Add @{{data}}</a>
+    <h3>Most recent Tweets by {{screen_name}}:</h3><p>{{data}}</p>
   </div>
 <ul>
   {%for i in tweets%}
     <div class="tweetlist">
       <div class="date">
-        {{i.created_at}}
+        {{i.date_posted}}
       </div>
       <div class="tweet">
         {{i.text}}

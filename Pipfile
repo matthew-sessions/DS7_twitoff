@@ -16,6 +16,7 @@ sklearn = "*"
 scikit-learn = "*"
 dotenv = "*"
 python-dotenv = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"

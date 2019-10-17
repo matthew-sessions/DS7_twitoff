@@ -26,12 +26,30 @@
 }
 .home_split{
   display: flex;
+  background-color: #f8f9fa
+}
+@media screen and (max-width: 750px) {
+  .home_split{
+    display: flex;
+    flex-direction: column;
+    flex: wrap;
+  }
 }
 .home_left{
   flex: 50%;
 }
+.home_left_inner{
+  margin-top: 12px;
+  margin-left: 18px;
+  margin-bottom: 18px;
+}
 .home_right{
   flex: 50%;
+  background-color: #f8f9fa;
+}
+.home_right_inner{
+  padding-top: 12px;
+  padding-left: 18px;
 }
 .users{
   padding-top: 6px;
@@ -45,4 +63,13 @@
 }
 .usercol{
   margin-left: 12px;
+}
+.user1{
+  margin-right: 15px;
+}
+.user2{
+  margin-left: 15px;
+}
+.vs{
+  margin-top: 5px;
 }

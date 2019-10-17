@@ -6,6 +6,8 @@ from .models import DB, User
 import os
 from .twitter import *
 from .query import *
+from .predict import *
+import pygal
 
 def create_app():
     """create and configures an instance of a flask app"""
@@ -45,7 +47,7 @@ def create_app():
                 screen_name = js
                 var = value
                 data = value
-                return(render_template('user.html', tweets=tweets, screen_name=screen_name, var=var, data=data))
+                return(render_template('user.html', tweets=tweets, screen_name=screen_name, var=var, data=data, title='Users'))
             except:
                 return(redirect('/'))
     @app.route('/euser/<value>')
@@ -54,7 +56,7 @@ def create_app():
         useid = use.id
         tweets = Tweet.query.filter(Tweet.user_id == useid)
         var = value
-        return(render_template('user_sql.html', tweets=tweets, screen_name=use.full_name, var=var))
+        return(render_template('user_sql.html', tweets=tweets, screen_name=use.full_name, var=var, title='Current user'))
 
 
     @app.route('/user')
@@ -80,4 +82,20 @@ def create_app():
     def drop(value):
         drop_user(value)
         return(redirect('/'))
+    @app.route('/predict/')
+    def predict():
+        user1 = request.args.get('user1')
+        user2 = request.args.get('user2')
+        tweet = request.args.get('tweet')
+        pred, proba = predict_user(user1, user2, tweet)
+        user1_num = round(proba[0][0] * 100, 2)
+        user2_num = round(proba[0][1] * 100, 2)
+        graph = pygal.Bar()
+        a, b, info = logic(user1, user2, user1_num, user2_num)
+        graph.title = f'% likelihood @{a} sent tweet over @{b}'
+        graph.add(f'@{user1}',  [user1_num])
+        graph.add(f'@{user2}',  [user2_num])
+
+        graph_data = graph.render_data_uri()
+        return(render_template('predict.html', info=info, tweet=tweet, graph_data = graph_data, title='Predict'))
     return(app)
